@@ -10,6 +10,14 @@ Todo.init({
         autoIncrement: true,
         primaryKey: true
     },
+    author_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            key: "id",
+            model: "Users"
+        }
+    },
     text: {
         type: DataTypes.STRING,
         allowNull: false
@@ -19,6 +27,6 @@ Todo.init({
         defaultValue: false,
         allowNull: false
     }
-}, { timestamps: true, sequelize })
+}, { timestamps: true, sequelize });
 
 module.exports = Todo

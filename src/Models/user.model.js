@@ -33,8 +33,4 @@ User.init({
     }
 }, { sequelize, timestamps: true });
 
-(async () => {
-    await sequelize.sync({ force: true })
-})();
-
 module.exports = User

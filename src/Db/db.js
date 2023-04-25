@@ -20,4 +20,8 @@ async function connectToDatabase() {
     }
 }
 
+(async () => {
+    await sequelize.sync({ logging: false, alter: true })
+})();
+
 module.exports = { sequelize, connectToDatabase }
