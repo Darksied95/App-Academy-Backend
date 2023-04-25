@@ -7,3 +7,6 @@ router.get('/', getTodos)
 router.delete('/', deleteTodo)
 router.put('/', updateTodo)
 router.post('/', createTodo)
+
+
+module.exports = router
