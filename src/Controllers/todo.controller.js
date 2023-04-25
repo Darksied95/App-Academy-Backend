@@ -1,7 +1,13 @@
 const Todomodel = require('../Models/todo.model')
 
 async function getTodos(req, res) {
+    const todos = await Todomodel.findAll({
+        where: {
+            author_id: req.user.id
+        }
+    })
 
+    res.json(todos)
 }
 
 function deleteTodo(req, res) {
