@@ -11,28 +11,35 @@ async function getTodos(req, res) {
 }
 
 async function deleteTodo(req, res) {
+    console.log(req.query, req.params, 90);
     const user = await Todomodel.destroy({
         where: {
-            id: req.body.id
+            id: req.params.id,
+            author_id: req.user.id
         }
     })
 
     res.json({ type: "success", count: user })
 }
 async function updateTodo(req, res) {
-    const { completed, text, id } = req.body
+    const { completed, text } = req.body
+
     const updateObj = {}
+
     updateObj.completed = completed || false
+
     updateObj.text = text
+
     const user = await Todomodel.update(updateObj, {
         where: {
-            id,
+            id: req.params.id,
             author_id: req.user.id
         }
     })
     res.json({ type: "success", user })
 }
 async function createTodo(req, res) {
+
     const { text } = req.body
 
     if (!text) throw new Error('Text cannot be empty')

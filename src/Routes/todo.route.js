@@ -6,11 +6,9 @@ const router = express.Router()
 
 
 
-router.route('/')
-    .get(auth, getTodos)
-    .patch(auth, updateTodo)
-    .post(auth, createTodo)
-    .delete(auth, deleteTodo)
+
+router.route('/:id').patch(auth, updateTodo).delete(auth, deleteTodo)
+router.route('/').get(auth, getTodos).post(auth, createTodo)
 
 
 module.exports = router
