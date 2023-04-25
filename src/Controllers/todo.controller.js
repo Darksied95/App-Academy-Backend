@@ -19,8 +19,18 @@ async function deleteTodo(req, res) {
 
     res.json({ type: "success", count: user })
 }
-function updateTodo(req, res) {
-    res.send('success')
+async function updateTodo(req, res) {
+    const { completed, text, id } = req.body
+    const updateObj = {}
+    updateObj.completed = completed || false
+    updateObj.text = text
+    const user = await Todomodel.update(updateObj, {
+        where: {
+            id,
+            author_id: req.user.id
+        }
+    })
+    res.json({ type: "success", user })
 }
 async function createTodo(req, res) {
     const { text } = req.body
