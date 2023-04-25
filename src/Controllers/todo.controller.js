@@ -4,13 +4,13 @@ function getTodos(req, res) {
     res.send('success')
 }
 
-function deleteTodo() {
+function deleteTodo(req, res) {
     res.send('success')
 }
-function updateTodo() {
+function updateTodo(req, res) {
     res.send('success')
 }
-function createTodo() {
+function createTodo(req, res) {
     res.send('success')
 }
 

@@ -4,10 +4,13 @@ const auth = require('../Middleware/auth')
 
 const router = express.Router()
 
-router.get('/', auth, getTodos)
-router.delete('/', auth, deleteTodo)
-router.put('/', auth, updateTodo)
-router.post('/', auth, createTodo)
+
+
+router.route('/')
+    .get(auth, getTodos)
+    .put(auth, updateTodo)
+    .post(auth, createTodo)
+    .delete(auth, deleteTodo)
 
 
 module.exports = router
