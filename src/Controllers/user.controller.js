@@ -3,21 +3,28 @@ const bcrypt = require('bcryptjs')
 
 
 
-async function loginHandler(req, res) {
+async function loginHandler(req, res, next) {
+    try {
 
-    const { password, username } = req.body
+        const { password, username } = req.body
 
-    const user = await UserModel.findOne({ where: { username } })
+        const user = await UserModel.findOne({ where: { username } })
 
-    if (!user) throw new Error("Wrong username or password")
+        if (!user) throw new Error("Wrong username or password")
 
-    const isMatch = await bcrypt.compare(password, user.password)
+        const isMatch = await bcrypt.compare(password, user.password)
 
-    if (!isMatch) throw new Error("Wrong username or password")
+        if (!isMatch) throw new Error("Wrong username or password")
 
-    const token = await user.generateAuthToken()
+        const token = await user.generateAuthToken()
 
-    res.json({ type: "success", user, token })
+        res.json({ type: "success", user, token })
+
+    } catch (error) {
+        next(error)
+    }
+
+
 }
 
 async function registerHandler(req, res, next) {
