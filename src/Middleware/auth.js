@@ -10,7 +10,7 @@ async function auth(req, res, next) {
 
     if (!user) throw new Error('User not Authenticated')
 
-    req.user = user
+    req.user = user.dataValues
     req.token = token
     next()
 }
