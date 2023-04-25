@@ -10,8 +10,14 @@ async function getTodos(req, res) {
     res.json(todos)
 }
 
-function deleteTodo(req, res) {
-    res.send('success')
+async function deleteTodo(req, res) {
+    const user = await Todomodel.destroy({
+        where: {
+            id: req.body.id
+        }
+    })
+
+    res.json({ type: "success", count: user })
 }
 function updateTodo(req, res) {
     res.send('success')
