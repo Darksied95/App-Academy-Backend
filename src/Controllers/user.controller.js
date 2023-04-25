@@ -20,19 +20,24 @@ async function loginHandler(req, res) {
     res.json({ type: "success", user, token })
 }
 
-async function registerHandler(req, res) {
+async function registerHandler(req, res, next) {
+    try {
+        let { username, password } = req.body
 
-    let { username, password } = req.body
+        password = await bcrypt.hash(password, 8)
 
-    password = await bcrypt.hash(password, 8)
+        if (!username || !password) throw new Error("Something went wrong")
 
-    if (!username || !password) throw new Error("Something went wrong")
+        const user = await UserModel.create({ username, password })
 
-    const user = await UserModel.create({ username, password })
+        const token = await user.generateAuthToken()
 
-    const token = await user.generateAuthToken()
+        res.json({ type: 'success', user, token })
+    } catch (error) {
+        next(error)
+    }
 
-    res.json({ type: 'success', user, token })
+
 }
 
 
