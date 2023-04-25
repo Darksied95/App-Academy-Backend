@@ -7,7 +7,7 @@ async function loginHandler(req, res) {
 
     const { password, username } = req.body
 
-    const [user] = await UserModel.findAll({ where: { username } })
+    const user = await UserModel.findOne({ where: { username } })
 
     if (!user) throw new Error("Wrong username or password")
 

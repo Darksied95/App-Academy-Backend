@@ -8,6 +8,12 @@ class User extends Model {
         const token = jwt.sign({ _id: this.id.toString() }, process.env.JWT_SIGNATURE)
         return token
     }
+
+    toJSON = function () {
+        const userObject = this.dataValues
+        delete userObject.password
+        return userObject
+    }
 }
 
 User.init({
