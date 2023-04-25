@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
 
 
-console.log(process.env.DB_PASSWORD, 0);
 const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USERNAME,

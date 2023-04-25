@@ -4,6 +4,7 @@ const { loginHandler, registerHandler } = require('../Controllers/user.controlle
 
 const router = express.Router()
 
+router.get('/', loginHandler)
 router.post('/login', loginHandler)
 router.post('/register', registerHandler)
 
