@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.route('/')
     .get(auth, getTodos)
-    .put(auth, updateTodo)
+    .patch(auth, updateTodo)
     .post(auth, createTodo)
     .delete(auth, deleteTodo)
 
