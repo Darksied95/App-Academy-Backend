@@ -11,7 +11,7 @@ async function errorHandler(err, req, res, next) {
 
     res
         .status(500)
-        .json({ error: 'Something Went Wrong', message: err.message })
+        .json({ error: 'Something Went Wrong', message: err })
     next()
 }
 

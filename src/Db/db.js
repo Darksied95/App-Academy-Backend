@@ -12,7 +12,7 @@ async function connectToDatabase() {
 }
 
 (async () => {
-    await sequelize.sync({ logging: false, alter: true })
+    await sequelize.sync({ force: true })
 })();
 
 module.exports = { sequelize, connectToDatabase }
