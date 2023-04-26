@@ -8,9 +8,10 @@ async function errorHandler(err, req, res, next) {
             .json({ type: "failure", message: err.message })
     }
 
+
     res
         .status(500)
-        .json({ error: 'Something Went Wrong' })
+        .json({ error: 'Something Went Wrong', message: err.message })
     next()
 }
 
