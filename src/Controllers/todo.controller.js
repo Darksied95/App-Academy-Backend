@@ -53,7 +53,7 @@ async function updateTodo(req, res, next) {
     }
 
 }
-async function createTodo(req, res) {
+async function createTodo(req, res, next) {
     try {
         const { text } = req.body
 
