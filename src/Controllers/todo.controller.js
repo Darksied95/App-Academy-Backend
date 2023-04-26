@@ -8,8 +8,7 @@ async function getTodos(req, res, next) {
                 author_id: req.user.id
             }
         })
-
-        res.json(todos)
+        res.json({ data: todos })
     } catch (error) {
         next(error)
     }
