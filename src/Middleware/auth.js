@@ -1,4 +1,5 @@
 const UserModel = require('../Models/user.model')
+const { UnAunthenticatedError } = require('../Errors')
 const jwt = require('jsonwebtoken')
 
 
@@ -10,7 +11,7 @@ async function auth(req, res, next) {
 
         const user = await UserModel.findOne({ where: { id: decoded.id } })
 
-        if (!user) throw new Error('User not Authenticated')
+        if (!user) throw new UnAunthenticatedError('User not Authenticated')
 
         req.user = user.dataValues
 

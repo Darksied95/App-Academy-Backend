@@ -1,4 +1,5 @@
 const Todomodel = require('../Models/todo.model')
+const { BadRequestError } = require('../Errors')
 
 async function getTodos(req, res, next) {
     try {
@@ -57,7 +58,7 @@ async function createTodo(req, res) {
     try {
         const { text } = req.body
 
-        if (!text) throw new Error('Text cannot be empty')
+        if (!text) throw new BadRequestError('Text cannot be empty')
 
         const todo = await Todomodel.create({
             author_id: req.user.id,
